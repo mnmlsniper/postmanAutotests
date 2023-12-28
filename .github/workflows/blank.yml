@@ -22,7 +22,7 @@ jobs:
     steps:
       # Копирует код из репозитория на виртуальную машину
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
 
@@ -39,7 +39,7 @@ jobs:
 
      # Сохраняем результаты тестов
       - name: Output the run Details
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: RunReports
           path: testResults
