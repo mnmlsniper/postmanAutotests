@@ -28,6 +28,9 @@ jobs:
 
     # Устанавливаем Java Script
       - run: npm install -g newman newman-reporter-htmlextra
+
+    # Создаем папку куда будет сохраняться отчет об автотестах
+      - run: mkdir -p testResults
      
      # Запускаем коллекцию постмана
       - name: Run POSTMAN collection
