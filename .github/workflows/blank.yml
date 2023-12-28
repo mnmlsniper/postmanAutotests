@@ -1,0 +1,46 @@
+# Это комментарий
+
+name: postmanTests
+
+# Когда наш воркфлоу будет запускаться
+on:
+  pull_request:
+    branches:
+    - master
+
+  # Ручной запуск
+  workflow_dispatch:
+
+# Описываем джобу
+jobs:
+  # Этот воркфлоу содержит одну джобу с именем tests
+  tests:
+    # На какой операционно системе будет запущена джоба
+    runs-on: ubuntu-latest
+
+    # Последовательность шагов, которые будут выполнены в рамках джобы
+    steps:
+      # Копирует код из репозитория на виртуальную машину
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+    # Устанавливаем Java Script
+      - run: npm install -g newman newman-reporter-htmlextra
+     
+     # Запускаем коллекцию постмана
+      - name: Run POSTMAN collection
+        run: |
+          newman run demo.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
+
+     # Сохраняем результаты тестов
+      - name: Output the run Details
+        uses: actions/upload-artifact@v2
+        with:
+          name: RunReports
+          path: testResults
+      
+
+
+
