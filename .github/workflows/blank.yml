@@ -34,8 +34,7 @@ jobs:
      
      # Запускаем коллекцию постмана
       - name: Run POSTMAN collection
-        run: |
-          newman run demo.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html
+        run: newman run demo.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html
 
      # Сохраняем результаты тестов
       - name: Output the run Details
