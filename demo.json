@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "fbe7f1d3-f7fe-4b10-84a6-f769b050cba2",
 		"name": "Vikunja",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "2176834",
 		"_collection_link": "https://lunar-rocket-375371.postman.co/workspace/20JulyQaEngineer~86851e58-f606-4d03-9fe1-5aec1ba90d8e/collection/2176834-fbe7f1d3-f7fe-4b10-84a6-f769b050cba2?action=share&source=collection_link&creator=2176834"
 	},
@@ -40,20 +40,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "https://try.vikunja.io/api/v1/login",
-							"protocol": "https",
-							"host": [
-								"try",
-								"vikunja",
-								"io"
-							],
-							"path": [
-								"api",
-								"v1",
-								"login"
-							]
-						}
+						"url": "https://try.vikunja.io/api/v1/login"
 					},
 					"response": []
 				},
@@ -84,20 +71,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "https://try.vikunja.io/api/v1/login",
-							"protocol": "https",
-							"host": [
-								"try",
-								"vikunja",
-								"io"
-							],
-							"path": [
-								"api",
-								"v1",
-								"login"
-							]
-						}
+						"url": "https://try.vikunja.io/api/v1/login"
 					},
 					"response": []
 				}
@@ -117,20 +91,7 @@
 								"type": "text"
 							}
 						],
-						"url": {
-							"raw": "https://try.vikunja.io/api/v1/user",
-							"protocol": "https",
-							"host": [
-								"try",
-								"vikunja",
-								"io"
-							],
-							"path": [
-								"api",
-								"v1",
-								"user"
-							]
-						}
+						"url": "https://try.vikunja.io/api/v1/user"
 					},
 					"response": []
 				},
@@ -139,13 +100,9 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IiIsImVtYWlsUmVtaW5kZXJzRW5hYmxlZCI6ZmFsc2UsImV4cCI6MTYyNzA2MzE0NywiaWQiOjEsIm5hbWUiOiIiLCJ0eXBlIjoxLCJ1c2VybmFtZSI6ImRlbW8ifQ.QytkexL3tNgz5rRpr7H8yj876JEQpD2zG2J_h46RqIU",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IiIsImVtYWlsUmVtaW5kZXJzRW5hYmxlZCI6ZmFsc2UsImV4cCI6MTYyNzA2MzE0NywiaWQiOjEsIm5hbWUiOiIiLCJ0eXBlIjoxLCJ1c2VybmFtZSI6ImRlbW8ifQ.QytkexL3tNgz5rRpr7H8yj876JEQpD2zG2J_h46RqIU"
+							}
 						},
 						"method": "GET",
 						"header": [
@@ -156,20 +113,7 @@
 								"disabled": true
 							}
 						],
-						"url": {
-							"raw": "https://try.vikunja.io/api/v1/user",
-							"protocol": "https",
-							"host": [
-								"try",
-								"vikunja",
-								"io"
-							],
-							"path": [
-								"api",
-								"v1",
-								"user"
-							]
-						}
+						"url": "https://try.vikunja.io/api/v1/user"
 					},
 					"response": []
 				}
