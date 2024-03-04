@@ -1,115 +1,179 @@
 {
 	"info": {
-		"_postman_id": "7cf75a9d-72d4-4ab1-9fb3-d6fb4f362079",
-		"name": "challenge",
+		"_postman_id": "fbe7f1d3-f7fe-4b10-84a6-f769b050cba2",
+		"name": "Vikunja",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "2176834",
-		"_collection_link": "https://lunar-rocket-375371.postman.co/workspace/20JulyQaEngineer~86851e58-f606-4d03-9fe1-5aec1ba90d8e/collection/2176834-7cf75a9d-72d4-4ab1-9fb3-d6fb4f362079?action=share&source=collection_link&creator=2176834"
+		"_collection_link": "https://lunar-rocket-375371.postman.co/workspace/20JulyQaEngineer~86851e58-f606-4d03-9fe1-5aec1ba90d8e/collection/2176834-fbe7f1d3-f7fe-4b10-84a6-f769b050cba2?action=share&source=collection_link&creator=2176834"
 	},
 	"item": [
 		{
-			"name": "post token",
-			"event": [
+			"name": "Авторизация",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"// Как обьявлять переменные",
-							"const token = 5;",
-							"let token2 = 'это строка';",
-							"//const token3 = $randomInt;",
-							"console.log(token);",
-							"console.log(token2);",
-							"//console(token3); ",
-							"/*",
-							"",
-							"*/",
-							"",
-							"// Получить хедер из запроса и записать в переменную",
-							"const response = pm.response.headers.get('X-Challenger');",
-							"console.warn(response);",
-							"",
-							"//Присвоение",
-							"pm.environment.set('token', response);",
-							"console.log(pm.environment.get('token'));",
-							"",
-							"",
-							"// Вариант 2",
-							"pm.environment.set('token1', pm.response.headers.get('X-Challenger'));",
-							"console.warn(pm.environment.get('token1'));"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "https://apichallenges.herokuapp.com/challenger",
-					"protocol": "https",
-					"host": [
-						"apichallenges",
-						"herokuapp",
-						"com"
+					"name": "post /login with data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    console.info('Логин ' + data.username);",
+									"    console.warn('Пароль ' + data.password);",
+									"    console.error('Qu')",
+									"    pm.response.to.have.status(pm.iterationData.get(\"status\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
 					],
-					"path": [
-						"challenger"
-					]
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"{{username}}\",\n    \"password\": \"{{password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://try.vikunja.io/api/v1/login",
+							"protocol": "https",
+							"host": [
+								"try",
+								"vikunja",
+								"io"
+							],
+							"path": [
+								"api",
+								"v1",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post /login with randomdata",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 412\", function () {",
+									"    pm.response.to.have.status(412);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"{{$randomUserName}}\",\n    \"password\": \"{{ra}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://try.vikunja.io/api/v1/login",
+							"protocol": "https",
+							"host": [
+								"try",
+								"vikunja",
+								"io"
+							],
+							"path": [
+								"api",
+								"v1",
+								"login"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "get challenges",
-			"event": [
+			"name": "Профиль пользователя",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.expect(pm.response.responseTime).to.eql(2000, 'здесь текст')",
-							"    pm.response.to.have.status(100, 'Ожидаем статус'+pm.response.responseTime);",
-							"});",
-							"pm.test(\"Response time is less than 50ms\", function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(50);",
-							"});",
-							"pm.test(\"Body is correct\", function () {",
-							"    pm.response.to.have.body(\"response_body_string\");",
-							"});",
-							"pm.test(\"Your test name\", function () {",
-							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData.value).to.eql(100);",
-							"});",
-							"pm.variables.get(\"variable_key\");"
+					"name": "get /user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IiIsImVtYWlsUmVtaW5kZXJzRW5hYmxlZCI6ZmFsc2UsImV4cCI6MTYyNzA2MzE0NywiaWQiOjEsIm5hbWUiOiIiLCJ0eXBlIjoxLCJ1c2VybmFtZSI6ImRlbW8ifQ.QytkexL3tNgz5rRpr7H8yj876JEQpD2zG2J_h46RqIU",
+								"type": "text"
+							}
 						],
-						"type": "text/javascript"
-					}
+						"url": {
+							"raw": "https://try.vikunja.io/api/v1/user",
+							"protocol": "https",
+							"host": [
+								"try",
+								"vikunja",
+								"io"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get /user Вариант 2",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IiIsImVtYWlsUmVtaW5kZXJzRW5hYmxlZCI6ZmFsc2UsImV4cCI6MTYyNzA2MzE0NywiaWQiOjEsIm5hbWUiOiIiLCJ0eXBlIjoxLCJ1c2VybmFtZSI6ImRlbW8ifQ.QytkexL3tNgz5rRpr7H8yj876JEQpD2zG2J_h46RqIU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IiIsImVtYWlsUmVtaW5kZXJzRW5hYmxlZCI6ZmFsc2UsImV4cCI6MTYyNzA2MzE0NywiaWQiOjEsIm5hbWUiOiIiLCJ0eXBlIjoxLCJ1c2VybmFtZSI6ImRlbW8ifQ.QytkexL3tNgz5rRpr7H8yj876JEQpD2zG2J_h46RqIU",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://try.vikunja.io/api/v1/user",
+							"protocol": "https",
+							"host": [
+								"try",
+								"vikunja",
+								"io"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user"
+							]
+						}
+					},
+					"response": []
 				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "X-Challenger",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "https://apichallenges.herokuapp.com/challenges",
-					"protocol": "https",
-					"host": [
-						"apichallenges",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"challenges"
-					]
-				}
-			},
-			"response": []
+			]
 		}
 	]
 }
