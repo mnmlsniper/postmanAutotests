@@ -1,53 +1,47 @@
 {
 	"info": {
-		"_postman_id": "fb9a68f9-4ea6-4c43-bedd-ce3dc3d064d9",
-		"name": "chall",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"_postman_id": "7cf75a9d-72d4-4ab1-9fb3-d6fb4f362079",
+		"name": "challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2176834",
+		"_collection_link": "https://lunar-rocket-375371.postman.co/workspace/20JulyQaEngineer~86851e58-f606-4d03-9fe1-5aec1ba90d8e/collection/2176834-7cf75a9d-72d4-4ab1-9fb3-d6fb4f362079?action=share&source=collection_link&creator=2176834"
 	},
 	"item": [
 		{
-			"name": "challenger",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true,
-				"disabledSystemHeaders": {
-					"accept": true
-				}
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "X-Challenger",
-						"value": "3bb0ecbc-9fda-4f1a-a12c-a01021920207",
-						"type": "text"
+			"name": "post token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Как обьявлять переменные",
+							"const token = 5;",
+							"let token2 = 'это строка';",
+							"//const token3 = $randomInt;",
+							"console.log(token);",
+							"console.log(token2);",
+							"//console(token3); ",
+							"/*",
+							"",
+							"*/",
+							"",
+							"// Получить хедер из запроса и записать в переменную",
+							"const response = pm.response.headers.get('X-Challenger');",
+							"console.warn(response);",
+							"",
+							"//Присвоение",
+							"pm.environment.set('token', response);",
+							"console.log(pm.environment.get('token'));",
+							"",
+							"",
+							"// Вариант 2",
+							"pm.environment.set('token1', pm.response.headers.get('X-Challenger'));",
+							"console.warn(pm.environment.get('token1'));"
+						],
+						"type": "text/javascript"
 					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "https://apichallenges.herokuapp.com/todos",
-					"protocol": "https",
-					"host": [
-						"apichallenges",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"todos"
-					]
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "get token",
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -67,67 +61,51 @@
 			"response": []
 		},
 		{
-			"name": "https://landing.trucker.group/#/executors",
+			"name": "get challenges",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.expect(pm.response.responseTime).to.eql(2000, 'здесь текст')",
+							"    pm.response.to.have.status(100, 'Ожидаем статус'+pm.response.responseTime);",
+							"});",
+							"pm.test(\"Response time is less than 50ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(50);",
+							"});",
+							"pm.test(\"Body is correct\", function () {",
+							"    pm.response.to.have.body(\"response_body_string\");",
+							"});",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.value).to.eql(100);",
+							"});",
+							"pm.variables.get(\"variable_key\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [
 					{
-						"key": "Content-Type",
-						"value": "application/json; charset=utf-8",
-						"type": "text",
-						"disabled": true
+						"key": "X-Challenger",
+						"value": "{{token}}",
+						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "https://trucker.group/api/v2/cargo_kinds",
+					"raw": "https://apichallenges.herokuapp.com/challenges",
 					"protocol": "https",
 					"host": [
-						"trucker",
-						"group"
-					],
-					"path": [
-						"api",
-						"v2",
-						"cargo_kinds"
-					],
-					"query": [
-						{
-							"key": "sign_in",
-							"value": "true",
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "curl -X POST -d \"from=KIX&to=NRT\" https://airportgap.dev-tester.com/api/airports/distance",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "https://airportgap.dev-tester.com/api/airports/distance?from=KIX&to=NRT",
-					"protocol": "https",
-					"host": [
-						"airportgap",
-						"dev-tester",
+						"apichallenges",
+						"herokuapp",
 						"com"
 					],
 					"path": [
-						"api",
-						"airports",
-						"distance"
-					],
-					"query": [
-						{
-							"key": "from",
-							"value": "KIX"
-						},
-						{
-							"key": "to",
-							"value": "NRT"
-						}
+						"challenges"
 					]
 				}
 			},
